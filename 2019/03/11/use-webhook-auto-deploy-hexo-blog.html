@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="现在写文章都是每次在本地写好后，都要去服务器上git pull 同步一下，这样比较麻烦。后来找到可以通过在GitHub添加webhook的方式实现，只要repo有push操作，那么就通知服务器部署博客。 查看了很多文章，但是没有成功，可能我的环境和别人不一样，不能照着他人那样依葫芦画瓢…记录下自己的实践过程  前提 服务器系统：CentOS 7 服务器已经安装好 node/git(能ssh访问)">
+<meta name="keywords" content="Hexo,webhook">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用webhook自动部署博客">
+<meta property="og:url" content="http://www.huangxiutao.cn/2019/03/11/use-webhook-auto-deploy-hexo-blog.html">
+<meta property="og:site_name" content="ss0xt">
+<meta property="og:description" content="现在写文章都是每次在本地写好后，都要去服务器上git pull 同步一下，这样比较麻烦。后来找到可以通过在GitHub添加webhook的方式实现，只要repo有push操作，那么就通知服务器部署博客。 查看了很多文章，但是没有成功，可能我的环境和别人不一样，不能照着他人那样依葫芦画瓢…记录下自己的实践过程  前提 服务器系统：CentOS 7 服务器已经安装好 node/git(能ssh访问)">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1g1022lkjbsj30c308y0uj.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1g1007b54g1j31q60oqjx7.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1g100bbj9k4j30xz0u07ak.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1g1033vz6ohj30g60bvq6z.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1g1035j065wj312k0istaz.jpg">
+<meta property="og:updated_time" content="2019-03-12T08:44:51.732Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用webhook自动部署博客">
+<meta name="twitter:description" content="现在写文章都是每次在本地写好后，都要去服务器上git pull 同步一下，这样比较麻烦。后来找到可以通过在GitHub添加webhook的方式实现，只要repo有push操作，那么就通知服务器部署博客。 查看了很多文章，但是没有成功，可能我的环境和别人不一样，不能照着他人那样依葫芦画瓢…记录下自己的实践过程  前提 服务器系统：CentOS 7 服务器已经安装好 node/git(能ssh访问)">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1g1022lkjbsj30c308y0uj.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.huangxiutao.cn/2019/03/11/use-webhook-auto-deploy-hexo-blog.html">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>使用webhook自动部署博客 | ss0xt</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ss0xt</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">熟能生巧</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huangxiutao.cn/2019/03/11/use-webhook-auto-deploy-hexo-blog.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xiutao Huang">
+      <meta itemprop="description" content="Record Life">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ss0xt">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用webhook自动部署博客
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-03-11 18:26:00" itemprop="dateCreated datePublished" datetime="2019-03-11T18:26:00+08:00">2019-03-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-12 16:44:51" itemprop="dateModified" datetime="2019-03-12T16:44:51+08:00">2019-03-12</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>现在写文章都是每次在本地写好后，都要去服务器上<code>git pull</code> 同步一下，这样比较麻烦。后来找到可以通过在<code>GitHub</code>添加<code>webhook</code>的方式实现，只要<code>repo</code>有<code>push</code>操作，那么就通知服务器部署博客。 查看了很多文章，但是没有成功，可能我的环境和别人不一样，不能照着他人那样依葫芦画瓢…记录下自己的实践过程</p>
+</blockquote>
+<h2 id="前提">前提</h2>
+<p>服务器系统：CentOS 7</p>
+<p>服务器已经安装好 <code>node</code>/<code>git</code>(能ssh访问)/<code>hexo</code>/<code>pm2</code>/<code>nginx</code></p>
+<p>并且博客目录已和<code>GitHub</code>仓库同步(也就是在博客目录下输入<code>git status</code> 会显示<code>git</code>的信息)</p>
+<p>文件目录：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g1022lkjbsj30c308y0uj.jpg" alt></p>
+<h2 id="安装github-webhook-handler">安装github-webhook-handler</h2>
+<p>root 用户(全局安装)：</p>
+<p><code>npm install -g github-webhook-handler</code></p>
+<p>⚠️ 我这里是用这个安装后，到博客目录下运行js还是会报找不到<code>module</code>的错，🤒解决办法：在博客目录再执行一次：<code>npm install github-webhook-handler</code></p>
+<h2 id="编写代码">编写代码</h2>
+<p>进入到博客<code>deploy</code>目录下，新建一个<code>deploy.sh</code>脚本（用于在收到<code>GitHub</code> <code>push</code>操作后进行<code>pull</code>博客代码并部署）：</p>
+<p><code>vim deploy.sh</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"></span><br><span class="line">WEB_PATH='/home/git/blog/public'</span><br><span class="line"></span><br><span class="line">echo "-----start deploy-----"</span><br><span class="line">cd $WEB_PATH</span><br><span class="line">echo "-----pulling source code-----"</span><br><span class="line">git reset --hard origin/master</span><br><span class="line">git clean -f</span><br><span class="line">git pull</span><br><span class="line">git checkout master</span><br><span class="line">echo "-----finished-----"</span><br></pre></td></tr></table></figure>
+<p><code>WEB_PATH</code>改成博客静态页面（就是存放那些<code>js</code> <code>html</code>的目录）所在的目录，我这里是<code>public</code>下</p>
+<blockquote>
+<p>⚠️ 注意：上面的sh脚本会将博客仓库（我这里是<code>public</code>目录）已有的改动会丢弃掉，因此最好不要在博客仓库中改动文件，我之前就是在<code>public</code>目录下新建了<code>deploy.sh</code>和<code>webhook.js</code>结果<code>push</code>后部署将我改动的文件给删掉了… 💢</p>
+</blockquote>
+<p>这里使用的是<code>nodejs</code>来实现<code>webhook</code>服务。因此在博客<code>deploy</code> 目录新建一个<code>webhook.js</code>:</p>
+<p><code>vim webhook.js</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">var</span> createHandler = <span class="built_in">require</span>(<span class="string">'github-webhook-handler'</span>)</span><br><span class="line"><span class="comment">//这里的path和secret 改成你自己想要设定的值，一会需要填写到GitHub webhooks中</span></span><br><span class="line"><span class="keyword">var</span> handler = createHandler(&#123; <span class="attr">path</span>: <span class="string">'/webhooks_push'</span>, <span class="attr">secret</span>: <span class="string">'INSERT_YOUR_SECRET'</span> &#125;)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run_cmd</span>(<span class="params">cmd, args, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> spawn = <span class="built_in">require</span>(<span class="string">'child_process'</span>).spawn;</span><br><span class="line">  <span class="keyword">var</span> child = spawn(cmd, args);</span><br><span class="line">  <span class="keyword">var</span> resp = <span class="string">""</span>;</span><br><span class="line">  child.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">buffer</span>) </span>&#123; resp += buffer.toString(); &#125;);</span><br><span class="line">  child.stdout.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; callback (resp) &#125;);</span><br><span class="line">&#125;</span><br><span class="line">handler.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.error(<span class="string">'Error:'</span>, err.message)</span><br><span class="line">&#125;)</span><br><span class="line">handler.on(<span class="string">'push'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Received a push event for %s to %s'</span>,</span><br><span class="line">    event.payload.repository.name,</span><br><span class="line">    event.payload.ref);</span><br><span class="line">    <span class="comment">//这里是收到GitHub push操作后会执行的脚步就是上面写的</span></span><br><span class="line">    run_cmd(<span class="string">'sh'</span>, [<span class="string">'./deploy.sh'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">text</span>)</span>&#123; <span class="built_in">console</span>.log(text) &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    handler(req, res, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">      res.statusCode = <span class="number">404</span></span><br><span class="line">      res.end(<span class="string">'no such location'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;).listen(<span class="number">7777</span>)<span class="comment">//监听7777端口</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(err)&#123;</span><br><span class="line">  <span class="built_in">console</span>.error(<span class="string">'Error:'</span>, err.message)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接着运行<code>webhook</code> <code>node</code>服务，我这里使用的是<code>pm2</code>的方式启动：</p>
+<p>在博客目录下：</p>
+<p><code>pm2 start webhook.js</code></p>
+<p>不使用pm2，常规后台运行并将日志记录到<code>webhook.log</code>中:</p>
+<p><code>nohup node webhook.js &gt; webhook.log &amp;</code></p>
+<h2 id="github配置webhook">GitHub配置webhook</h2>
+<p>打开博客GitHub的repo&gt;<code>Settings</code>&gt;<code>Webhooks</code>&gt;<code>Add webhook</code>:</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g1007b54g1j31q60oqjx7.jpg" alt></p>
+<p>填写服务器<code>webhook</code>的访问地址和在<code>webhook.js</code>的<code>secret</code>：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1g100bbj9k4j30xz0u07ak.jpg" alt></p>
+<h2 id="最后">最后</h2>
+<p>按理说照着上面一顿操作后，就可以实现自动化部署博客了，但是。。。我这个就是不行，不能访问，<code>GitHub</code> <code>webhook</code> 显示的是<code>Service Timeout</code>,后来才发现是我的服务器使用的是Nginx，没有处理转发这个请求。。。。</p>
+<p>因此在nginx中要配置一个代理转发，然后将<code>GitHub</code> <code>webhook</code>中的链接改一下：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g1033vz6ohj30g60bvq6z.jpg" alt="nginx"></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1g1035j065wj312k0istaz.jpg" alt="githubwebhook-update"></p>
+<hr>
+<blockquote>
+<p>参考文章:</p>
+<p><a href="https://www.gaoshilei.com/2017/10/30/hexo-init/" target="_blank" rel="noopener">快速搭建Hexo博客+webhook自动部署+全站HTTPS</a></p>
+<p><a href="https://blog.mutoe.com/2017/deploy-hexo-website-to-self-server/" target="_blank" rel="noopener">将 Hexo 博客发布到自己的服务器上</a></p>
+<p><a href="https://aotu.io/notes/2016/01/07/auto-deploy-website-by-webhooks-of-github/index.html" target="_blank" rel="noopener">使用Github的webhooks进行网站自动化部署</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          
+            <a href="/tags/webhook/" rel="tag"># webhook</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/11/Hexo-useful-command.html" rel="next" title="Hexo常见的命令">
+                <i class="fa fa-chevron-left"></i> Hexo常见的命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6211715064670984",
+    enable_page_level_ads: true
+  });
+</script>
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Xiutao Huang</p>
+              <div class="site-description motion-element" itemprop="description">Record Life</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前提"><span class="nav-number">1.</span> <span class="nav-text">前提</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装github-webhook-handler"><span class="nav-number">2.</span> <span class="nav-text">安装github-webhook-handler</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写代码"><span class="nav-number">3.</span> <span class="nav-text">编写代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#github配置webhook"><span class="nav-number">4.</span> <span class="nav-text">GitHub配置webhook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">5.</span> <span class="nav-text">最后</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiutao Huang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

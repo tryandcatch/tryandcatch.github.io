@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang>
+<html class="theme-next muse use-motion" lang="zh">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -96,22 +96,19 @@
   
 
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-6211715064670984",
-    enable_page_level_ads: true
-  });
-</script>
 
 
-  <meta property="og:type" content="website">
+  <meta name="description" content="Record Life">
+<meta name="keywords" content="huangxiutao,ss0xt,hxt,blog">
+<meta property="og:type" content="website">
 <meta property="og:title" content="ss0xt">
 <meta property="og:url" content="http://www.huangxiutao.cn/index.html">
 <meta property="og:site_name" content="ss0xt">
-<meta property="og:locale" content="default">
+<meta property="og:description" content="Record Life">
+<meta property="og:locale" content="zh">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ss0xt">
+<meta name="twitter:description" content="Record Life">
 
 
 
@@ -169,7 +166,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh">
 
   
   
@@ -192,6 +189,10 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
+      
+        <p class="site-subtitle">熟能生巧</p>
+      
     
     
   </div>
@@ -294,11 +295,11 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huangxiutao.cn/2019/03/08/Hexo搭建遇到的问题.html">
+    <link itemprop="mainEntityOfPage" href="http://www.huangxiutao.cn/2019/03/11/use-webhook-auto-deploy-hexo-blog.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ss0xt">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="Xiutao Huang">
+      <meta itemprop="description" content="Record Life">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -314,7 +315,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/08/Hexo搭建遇到的问题.html" class="post-title-link" itemprop="url">Hexo搭建遇到的问题</a>
+                <a href="/2019/03/11/use-webhook-auto-deploy-hexo-blog.html" class="post-title-link" itemprop="url">使用webhook自动部署博客</a>
               
             
           </h1>
@@ -339,12 +340,24 @@
                 
               
 
-              <time title="Created: 2019-03-08 20:57:50 / Modified: 20:58:12" itemprop="dateCreated datePublished" datetime="2019-03-08T20:57:50+08:00">2019-03-08</time>
+              <time title="Created: 2019-03-11 18:26:00" itemprop="dateCreated datePublished" datetime="2019-03-11T18:26:00+08:00">2019-03-11</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-12 16:44:51" itemprop="dateModified" datetime="2019-03-12T16:44:51+08:00">2019-03-12</time>
               
             
           </span>
@@ -380,18 +393,20 @@
       
         
           
-            <h2 id="部署需要输入git用户名密码的问题"><a href="#部署需要输入git用户名密码的问题" class="headerlink" title="部署需要输入git用户名密码的问题"></a>部署需要输入git用户名密码的问题</h2><p>本地已经配置了ssh的方式访问git，并且使用ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a> 命令返回的也是正常的，但是在使用hexo d（或hexo deploy）进行部署的时候出现了需要输入用户名密码的问题：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g0v4qdqjcsj30hd04fq3g.jpg" alt="image-20190307212646367"></p>
-<p>解决办法:修改<code>_confi.yml</code>，将<code>deploy</code>节点下的<code>repo</code>改为ssh的git，例：<a href="mailto:`git@github.com" target="_blank" rel="noopener">`git@github.com</a>:USERNAME/REPO.git`</p>
-<blockquote>
-<p><a href="https://stackoverflow.com/questions/10909221/why-is-github-asking-for-username-password-when-following-the-instructions-on-sc" target="_blank" rel="noopener">Why is Github asking for username/password when following the instructions on screen and pushing a new repo?</a></p>
-</blockquote>
-<h2 id="写作遇到的“小问题”"><a href="#写作遇到的“小问题”" class="headerlink" title="写作遇到的“小问题”"></a>写作遇到的“小问题”</h2><blockquote>
-<p>准确来说不算是问题，算是自己的野路子。</p>
-</blockquote>
-<p>直接将以后的md文件复制到<code>hexo</code> 博客根目录下的<code>source/_posts</code>文件夹下，然后使用<code>hexo clean</code> <code>hexo g</code> <code>hexo d</code>部署后访问的博客是没有title的，而且文章标题没有链接，点击不会跳转.以后写作还是老老实实按照流程来：<code>hexo new post &quot;title&quot;</code> :)</p>
-
+            <p>
+              
+现在写文章都是每次在本地写好后，都要去服务器上git pull 同步一下，这样比较麻烦。后来找到可以通过在GitHub添加webhook的方式实现，只要repo有push操作，那么就通知服务器部署博客。 查看了很多文章，但是没有成功，可能我的环境和别人不一样，不能照着他人那样依葫芦画瓢…记录下自己
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/11/use-webhook-auto-deploy-hexo-blog.html#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -446,11 +461,11 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huangxiutao.cn/2019/03/07/Hi.html">
+    <link itemprop="mainEntityOfPage" href="http://www.huangxiutao.cn/2019/03/11/Hexo-useful-command.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ss0xt">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="Xiutao Huang">
+      <meta itemprop="description" content="Record Life">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -466,7 +481,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/07/Hi.html" class="post-title-link" itemprop="url">Hi</a>
+                <a href="/2019/03/11/Hexo-useful-command.html" class="post-title-link" itemprop="url">Hexo常见的命令</a>
               
             
           </h1>
@@ -491,9 +506,13 @@
                 
               
 
-              <time title="Created: 2019-03-07 21:15:08" itemprop="dateCreated datePublished" datetime="2019-03-07T21:15:08+08:00">2019-03-07</time>
+              <time title="Created: 2019-03-11 15:59:37 / Modified: 16:00:26" itemprop="dateCreated datePublished" datetime="2019-03-11T15:59:37+08:00">2019-03-11</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -528,8 +547,26 @@
       
         
           
-            
+            <p>
+              Hexo 写作完整的流程
+新建一个文章：hexo new post &quot;TITLE&quot;
+本地预览：hexo s
+将md文件转换成html：hexo g
+部署（推送到git仓库）：hexo d
+…
+自己常用的命令
+写文章加标签：hexo new post &quot;TITLE&quo
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/11/Hexo-useful-command.html#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -584,11 +621,11 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huangxiutao.cn/2019/03/07/hello-world.html">
+    <link itemprop="mainEntityOfPage" href="http://www.huangxiutao.cn/2019/03/08/Build-hexo-problems.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ss0xt">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="Xiutao Huang">
+      <meta itemprop="description" content="Record Life">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -604,7 +641,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/07/hello-world.html" class="post-title-link" itemprop="url">Hello World</a>
+                <a href="/2019/03/08/Build-hexo-problems.html" class="post-title-link" itemprop="url">Hexo搭建遇到的问题</a>
               
             
           </h1>
@@ -629,9 +666,25 @@
                 
               
 
-              <time title="Created: 2019-03-07 20:40:12" itemprop="dateCreated datePublished" datetime="2019-03-07T20:40:12+08:00">2019-03-07</time>
+              <time title="Created: 2019-03-08 20:57:50" itemprop="dateCreated datePublished" datetime="2019-03-08T20:57:50+08:00">2019-03-08</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-11 16:02:06" itemprop="dateModified" datetime="2019-03-11T16:02:06+08:00">2019-03-11</time>
+              
             
           </span>
 
@@ -666,17 +719,22 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <p>
+              部署需要输入git用户名密码的问题
+本地已经配置了ssh的方式访问git，并且使用ssh -T git@github.com 命令返回的也是正常的，但是在使用hexo d（或hexo deploy）进行部署的时候出现了需要输入用户名密码的问题：
 
+解决办法:修改_confi.yml，将deploy节
+              ...
+            </p>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/08/Build-hexo-problems.html#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -747,8 +805,8 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">ss0xt</p>
-              <div class="site-description motion-element" itemprop="description"></div>
+              <p class="site-author-name" itemprop="name">Xiutao Huang</p>
+              <div class="site-description motion-element" itemprop="description">Record Life</div>
           </div>
 
           
@@ -775,7 +833,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
@@ -819,7 +881,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">ss0xt</span>
+  <span class="author" itemprop="copyrightHolder">Xiutao Huang</span>
 
   
 
