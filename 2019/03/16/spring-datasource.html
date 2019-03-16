@@ -104,27 +104,27 @@
 
 
 
-  <meta name="description" content="部署需要输入git用户名密码的问题 本地已经配置了ssh的方式访问git，并且使用ssh -T git@github.com 命令返回的也是正常的，但是在使用hexo d（或hexo deploy）进行部署的时候出现了需要输入用户名密码的问题：  解决办法:修改_confi.yml，将deploy节点下的repo改为ssh的git，例：git@github.com:USERNAME/REPO.gi">
-<meta name="keywords" content="problems,Hexo">
+  <meta name="description" content="最近在看Spring(主要是Spring Boot)配置数据源相关的东西，这篇文章主要记录下所了解到的知识，怕以后有些东西又忘记😅，方便以后查阅，多数据源配置有待补充…  主角 Spring boot 中涉及到数据库这一块的几个重要的类/接口：  数据源相关：  DataSource(DataSourceAutoConfiguration)   事务相关：  DataSourceTransac">
+<meta name="keywords" content="Spring,数据库,JDBC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo搭建遇到的问题">
-<meta property="og:url" content="http://www.huangxiutao.cn/2019/03/08/Build-hexo-problems.html">
+<meta property="og:title" content="Spring数据源配置相关">
+<meta property="og:url" content="http://www.huangxiutao.cn/2019/03/16/spring-datasource.html">
 <meta property="og:site_name" content="ss0xt">
-<meta property="og:description" content="部署需要输入git用户名密码的问题 本地已经配置了ssh的方式访问git，并且使用ssh -T git@github.com 命令返回的也是正常的，但是在使用hexo d（或hexo deploy）进行部署的时候出现了需要输入用户名密码的问题：  解决办法:修改_confi.yml，将deploy节点下的repo改为ssh的git，例：git@github.com:USERNAME/REPO.gi">
+<meta property="og:description" content="最近在看Spring(主要是Spring Boot)配置数据源相关的东西，这篇文章主要记录下所了解到的知识，怕以后有些东西又忘记😅，方便以后查阅，多数据源配置有待补充…  主角 Spring boot 中涉及到数据库这一块的几个重要的类/接口：  数据源相关：  DataSource(DataSourceAutoConfiguration)   事务相关：  DataSourceTransac">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1g0v4qdqjcsj30hd04fq3g.jpg">
-<meta property="og:updated_time" content="2019-03-11T08:02:06.800Z">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1g14sb7rd6gj31pm0u0npd.jpg">
+<meta property="og:updated_time" content="2019-03-16T10:05:05.358Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo搭建遇到的问题">
-<meta name="twitter:description" content="部署需要输入git用户名密码的问题 本地已经配置了ssh的方式访问git，并且使用ssh -T git@github.com 命令返回的也是正常的，但是在使用hexo d（或hexo deploy）进行部署的时候出现了需要输入用户名密码的问题：  解决办法:修改_confi.yml，将deploy节点下的repo改为ssh的git，例：git@github.com:USERNAME/REPO.gi">
-<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1g0v4qdqjcsj30hd04fq3g.jpg">
+<meta name="twitter:title" content="Spring数据源配置相关">
+<meta name="twitter:description" content="最近在看Spring(主要是Spring Boot)配置数据源相关的东西，这篇文章主要记录下所了解到的知识，怕以后有些东西又忘记😅，方便以后查阅，多数据源配置有待补充…  主角 Spring boot 中涉及到数据库这一块的几个重要的类/接口：  数据源相关：  DataSource(DataSourceAutoConfiguration)   事务相关：  DataSourceTransac">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1g14sb7rd6gj31pm0u0npd.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://www.huangxiutao.cn/2019/03/08/Build-hexo-problems.html">
+  <link rel="canonical" href="http://www.huangxiutao.cn/2019/03/16/spring-datasource.html">
 
 
 
@@ -134,7 +134,7 @@
   };
 </script>
 
-  <title>Hexo搭建遇到的问题 | ss0xt</title>
+  <title>Spring数据源配置相关 | ss0xt</title>
   
 
 
@@ -314,7 +314,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huangxiutao.cn/2019/03/08/Build-hexo-problems.html">
+    <link itemprop="mainEntityOfPage" href="http://www.huangxiutao.cn/2019/03/16/spring-datasource.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiutao Huang">
@@ -331,7 +331,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hexo搭建遇到的问题
+          <h1 class="post-title" itemprop="name headline">Spring数据源配置相关
 
               
             
@@ -357,24 +357,12 @@
                 
               
 
-              <time title="Created: 2019-03-08 20:57:50" itemprop="dateCreated datePublished" datetime="2019-03-08T20:57:50+08:00">2019-03-08</time>
+              <time title="Created: 2019-03-16 15:01:24 / Modified: 18:05:05" itemprop="dateCreated datePublished" datetime="2019-03-16T15:01:24+08:00">2019-03-16</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-03-11 16:02:06" itemprop="dateModified" datetime="2019-03-11T16:02:06+08:00">2019-03-11</time>
               
             
           </span>
@@ -408,18 +396,38 @@
       
 
       
-        <h2 id="部署需要输入git用户名密码的问题">部署需要输入git用户名密码的问题</h2>
-<p>本地已经配置了ssh的方式访问git，并且使用ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a> 命令返回的也是正常的，但是在使用hexo d（或hexo deploy）进行部署的时候出现了需要输入用户名密码的问题：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g0v4qdqjcsj30hd04fq3g.jpg" alt="image-20190307212646367"></p>
-<p>解决办法:修改<code>_confi.yml</code>，将<code>deploy</code>节点下的<code>repo</code>改为ssh的git，例：<code>git@github.com:USERNAME/REPO.git</code></p>
-<blockquote>
-<p><a href="https://stackoverflow.com/questions/10909221/why-is-github-asking-for-username-password-when-following-the-instructions-on-sc" target="_blank" rel="noopener">Why is Github asking for username/password when following the instructions on screen and pushing a new repo?</a></p>
+        <blockquote>
+<p>最近在看<code>Spring</code>(主要是<code>Spring Boot</code>)配置数据源相关的东西，这篇文章主要记录下所了解到的知识，怕以后有些东西又忘记😅，方便以后查阅，多数据源配置有待补充…</p>
 </blockquote>
-<h2 id="写作遇到的-小问题">写作遇到的“小问题”</h2>
-<blockquote>
-<p>准确来说不算是问题，算是自己的野路子。</p>
-</blockquote>
-<p>直接将以后的md文件复制到<code>hexo</code> 博客根目录下的<code>source/_posts</code>文件夹下，然后使用<code>hexo clean</code> <code>hexo g</code> <code>hexo d</code>部署后访问的博客是没有title的，而且文章标题没有链接，点击不会跳转.以后写作还是老老实实按照流程来：<code>hexo new post &quot;title&quot;</code> 😃</p>
+<h2 id="主角">主角</h2>
+<p><code>Spring boot</code> 中涉及到数据库这一块的几个重要的类/接口：</p>
+<ul>
+<li>数据源相关：
+<ul>
+<li>DataSource(DataSourceAutoConfiguration)</li>
+</ul>
+</li>
+<li>事务相关：
+<ul>
+<li>DataSourceTransactionManager(DataSourceTransactionManagerAutoConfiguration)</li>
+</ul>
+</li>
+<li>操作相关：
+<ul>
+<li>JdbcTemplate(JdbcTemplateAutoConfiguration)</li>
+</ul>
+</li>
+</ul>
+<h2 id="常用的配置">常用的配置</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#简单的配置：</span><br><span class="line">spring.datasource.url=jdbc:mysql://ip/db</span><br><span class="line">#项目中用到的：</span><br><span class="line">#spring.datasource.url=jdbc:mysql://ip:port/db?characterEncoding=utf8&amp;useSSL=true&amp;serverTimezone=Asia/Shanghai</span><br><span class="line">spring.datasource.username=dbuser</span><br><span class="line">spring.datasource.password=dbpassword</span><br><span class="line">#这个是可选的，spring 会根据url是使用哪种数据库从而使用默认的数据库驱动。之前一直以为这个是必须配置的</span><br><span class="line">#另外com.mysql.jdbc.Driver 是 mysql-connector-java 5中的，com.mysql.cj.jdbc.Driver 是 mysql-connector-java 6中的</span><br><span class="line">spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver</span><br></pre></td></tr></table></figure>
+<p>简单的数据库配置上面的其实已经够了，但是我们在实际应用中还会有这样的场景：</p>
+<p>需要初始化数据库（建表和添加初始数据）</p>
+<p>这里我们不采用<code>ORM</code>(<code>hibernate</code>)方式，而是通过在<code>resource</code>文件夹下添加<code>schema.sql</code>和<code>data.sql</code>这两个文件（参见：<a href="https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html#howto-initialize-a-database-using-spring-jdbc" target="_blank" rel="noopener">Initialize a Database</a>），使用非内嵌/内存数据库需要添加配置：<code>spring.datasource.initialization-mode=always</code> ，才会自动初始化</p>
+<p>⚠️ 注意：配置了这个将会在每次项目启动的时候初始化数据一遍</p>
+<h2 id="自动初始化数据库实现的原理">自动初始化数据库实现的原理</h2>
+<p>简单描述：在<code>DataSourceAutoConfiguration</code> 中使用<a href="https://segmentfault.com/a/1190000011068471" target="_blank" rel="noopener">Import</a>注解，将<code>DataSourceInitializationConfiguration</code>“导入”，<code>DataSourceInitializationConfiguration</code>又将<code>DataSourceInitializerInvoker</code>“导入”,而<code>DataSourceInitializerInvoker</code>中会调用<code>DataSourceInitializer</code>的<code>createSchema</code>和<code>createSchema</code>方法，分别去建表和初始化数据。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1g14sb7rd6gj31pm0u0npd.jpg" alt="image-20190316175431149"></p>
+<hr>
 
       
     </div>
@@ -443,9 +451,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/problems/" rel="tag"># problems</a>
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
           
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
+            <a href="/tags/JDBC/" rel="tag"># JDBC</a>
           
         </div>
       
@@ -458,8 +468,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/09/use-Kalendaejs.html" rel="next" title="日期多选插件Kalendae.js">
-                <i class="fa fa-chevron-left"></i> 日期多选插件Kalendae.js
+              <a href="/2019/03/11/use-webhook-auto-deploy-hexo-blog.html" rel="next" title="使用webhook自动部署博客">
+                <i class="fa fa-chevron-left"></i> 使用webhook自动部署博客
               </a>
             
           </div>
@@ -467,10 +477,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/11/Hexo-useful-command.html" rel="prev" title="Hexo常见的命令">
-                Hexo常见的命令 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -606,7 +612,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#部署需要输入git用户名密码的问题"><span class="nav-number">1.</span> <span class="nav-text">部署需要输入git用户名密码的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写作遇到的-小问题"><span class="nav-number">2.</span> <span class="nav-text">写作遇到的“小问题”</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主角"><span class="nav-number">1.</span> <span class="nav-text">主角</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的配置"><span class="nav-number">2.</span> <span class="nav-text">常用的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动初始化数据库实现的原理"><span class="nav-number">3.</span> <span class="nav-text">自动初始化数据库实现的原理</span></a></li></ol></div>
             
 
           </div>
