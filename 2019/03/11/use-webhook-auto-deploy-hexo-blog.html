@@ -20,13 +20,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-6211715064670984",
-    enable_page_level_ads: true
-  });
-</script>
+
 
 
 
@@ -428,14 +422,14 @@
 <h2 id="编写代码">编写代码</h2>
 <p>进入到博客<code>deploy</code>目录下，新建一个<code>deploy.sh</code>脚本（用于在收到<code>GitHub</code> <code>push</code>操作后进行<code>pull</code>博客代码并部署）：</p>
 <p><code>vim deploy.sh</code>（不建议使用这个sh）</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"></span><br><span class="line">WEB_PATH='/home/git/blog/public'</span><br><span class="line"></span><br><span class="line">echo "-----start deploy-----"</span><br><span class="line">cd $WEB_PATH</span><br><span class="line">echo "-----pulling source code-----"</span><br><span class="line">git reset --hard origin/master &amp;&amp; git clean -f</span><br><span class="line">git pull &amp;&amp; git checkout master</span><br><span class="line">echo "-----finished-----"</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">WEB_PATH='/home/git/blog/public'</span><br><span class="line"></span><br><span class="line">echo "-----start deploy-----"</span><br><span class="line">cd $WEB_PATH</span><br><span class="line">echo "-----pulling source code-----"</span><br><span class="line">git reset --hard origin/master &amp;&amp; git clean -f</span><br><span class="line">git pull &amp;&amp; git checkout master</span><br><span class="line">echo "-----finished-----"</span><br></pre></td></tr></table></figure>
 <p><code>WEB_PATH</code>改成博客静态页面（就是存放那些<code>js</code> <code>html</code>的目录）所在的目录，我这里是<code>public</code>下</p>
 <p><s>⚠️ 注意：上面的sh脚本会将博客仓库（我这里是<code>public</code>目录）已有的改动会丢弃掉，因此最好不要在博客仓库中改动文件，我之前就是在<code>public</code>目录下新建了<code>deploy.sh</code>和<code>webhook.js</code>结果<code>push</code>后部署将我改动的文件给删掉了… 💢</s></p>
 <hr>
 <p><strong>2019-03-14 16:28 update:</strong></p>
 <p><strong>上面的<code>sh</code> 有些问题：本地使用<code>hexo d</code> 将博客 <code>push</code>到 <code>GitHub</code>上后<code>webhook</code>也显示成功了，但是访问博客还是会发现是没有更新。。。</strong></p>
 <p>因此将上面的sh修改下(加上了部署的耗时统计)：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">start_time=`date --date='0 days ago' "+%Y-%m-%d %H:%M:%S"`</span><br><span class="line">WEB_PATH='/home/git/blog/public'</span><br><span class="line">echo "-----start deploy,StartTime: $start_time-----"</span><br><span class="line">cd $WEB_PATH</span><br><span class="line">echo "-----pulling source code-----"</span><br><span class="line"><span class="meta">#</span>git reset --hard origin/master &amp;&amp; git clean -f</span><br><span class="line"><span class="meta">#</span>git pull &amp;&amp; git checkout master</span><br><span class="line">git pull origin master</span><br><span class="line">finish_time=`date --date='0 days ago' "+%Y-%m-%d %H:%M:%S"`</span><br><span class="line">duration=$(($(($(date +%s -d "$finish_time")-$(date +%s -d "$start_time")))))</span><br><span class="line">echo "Time consuming: $duration"</span><br><span class="line">echo "-----finished.EndTime: $finish_time-----"</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">start_time=`date --date='0 days ago' "+%Y-%m-%d %H:%M:%S"`</span><br><span class="line">WEB_PATH='/home/git/blog/public'</span><br><span class="line">echo "-----start deploy,StartTime: $start_time-----"</span><br><span class="line">cd $WEB_PATH</span><br><span class="line">echo "-----pulling source code-----"</span><br><span class="line"><span class="meta">#</span><span class="bash">git reset --hard origin/master &amp;&amp; git clean -f</span></span><br><span class="line"><span class="meta">#</span><span class="bash">git pull &amp;&amp; git checkout master</span></span><br><span class="line">git pull origin master</span><br><span class="line">finish_time=`date --date='0 days ago' "+%Y-%m-%d %H:%M:%S"`</span><br><span class="line">duration=$(($(($(date +%s -d "$finish_time")-$(date +%s -d "$start_time")))))</span><br><span class="line">echo "Time consuming: $duration"</span><br><span class="line">echo "-----finished.EndTime: $finish_time-----"</span><br></pre></td></tr></table></figure>
 <hr>
 <p>这里使用的是<code>nodejs</code>来实现<code>webhook</code>服务。因此在博客<code>deploy</code> 目录新建一个<code>webhook.js</code>:</p>
 <p><code>vim webhook.js</code>:</p>
@@ -581,7 +575,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -616,7 +610,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
