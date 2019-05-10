@@ -106,28 +106,31 @@
 
 
 
-  <meta name="description" content="之前对Docker只是停留在听过阶段，公司的项目中使用的是Docker部署，因此对Docker有了更深入的理解与运用，但是对于Docker网络这一块，还不是很熟，遇到了些问题（eg:默认设置中容器之间不能像在本机（宿主机）那样通过ip直接访问)，很有必要学习下这块的东西，将常用的命令以及使用记录下来，便于以后查看。  前言 Docker在Linux和Mac上的差异：图片来源：Docker for">
-<meta name="keywords" content="Docker">
+  <meta name="description" content="最近开始接手公司一个即时通讯后端的的开发，项目大致的选型已经定了，使用Java这一套，Openfire作为后端即时通讯服务器。一直想着有机会接触IM，这次恰好能接触到这方面的知识，多多学习下，不过由于之前没有接触过，估计以后的坑也会不少，而且开发时间比较短，一个半月，捂脸.jpg。  Openfire 简介 官网链接：Openfire Openfire是免费的、开源的、基于可拓展通讯和表示协议(">
+<meta name="keywords" content="IM,Openfire">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker网络学习">
-<meta property="og:url" content="http://www.huangxiutao.cn/2019/05/06/Docker-network.html">
+<meta property="og:title" content="Openfire搭建（Mac）">
+<meta property="og:url" content="http://www.huangxiutao.cn/2019/05/09/build-openfire-in-Mac.html">
 <meta property="og:site_name" content="ss0xt">
-<meta property="og:description" content="之前对Docker只是停留在听过阶段，公司的项目中使用的是Docker部署，因此对Docker有了更深入的理解与运用，但是对于Docker网络这一块，还不是很熟，遇到了些问题（eg:默认设置中容器之间不能像在本机（宿主机）那样通过ip直接访问)，很有必要学习下这块的东西，将常用的命令以及使用记录下来，便于以后查看。  前言 Docker在Linux和Mac上的差异：图片来源：Docker for">
+<meta property="og:description" content="最近开始接手公司一个即时通讯后端的的开发，项目大致的选型已经定了，使用Java这一套，Openfire作为后端即时通讯服务器。一直想着有机会接触IM，这次恰好能接触到这方面的知识，多多学习下，不过由于之前没有接触过，估计以后的坑也会不少，而且开发时间比较短，一个半月，捂脸.jpg。  Openfire 简介 官网链接：Openfire Openfire是免费的、开源的、基于可拓展通讯和表示协议(">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1g2sid4o1opj309c0bvaav.jpg">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1g2sie5kp2pj309c0bvt9g.jpg">
-<meta property="og:updated_time" content="2019-05-07T13:06:49.461Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1g2vdkdszrkj32h00u0wug.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1g2w1qv4h69j30dz0gm0v0.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1g2w1uqarlyj30lu04amyy.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1g2w1v21m02j31xp0u0k5o.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1g2wal6hb4tj31ge0pph3k.jpg">
+<meta property="og:updated_time" content="2019-05-10T08:35:54.442Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker网络学习">
-<meta name="twitter:description" content="之前对Docker只是停留在听过阶段，公司的项目中使用的是Docker部署，因此对Docker有了更深入的理解与运用，但是对于Docker网络这一块，还不是很熟，遇到了些问题（eg:默认设置中容器之间不能像在本机（宿主机）那样通过ip直接访问)，很有必要学习下这块的东西，将常用的命令以及使用记录下来，便于以后查看。  前言 Docker在Linux和Mac上的差异：图片来源：Docker for">
-<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1g2sid4o1opj309c0bvaav.jpg">
+<meta name="twitter:title" content="Openfire搭建（Mac）">
+<meta name="twitter:description" content="最近开始接手公司一个即时通讯后端的的开发，项目大致的选型已经定了，使用Java这一套，Openfire作为后端即时通讯服务器。一直想着有机会接触IM，这次恰好能接触到这方面的知识，多多学习下，不过由于之前没有接触过，估计以后的坑也会不少，而且开发时间比较短，一个半月，捂脸.jpg。  Openfire 简介 官网链接：Openfire Openfire是免费的、开源的、基于可拓展通讯和表示协议(">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1g2vdkdszrkj32h00u0wug.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://www.huangxiutao.cn/2019/05/06/Docker-network.html">
+  <link rel="canonical" href="http://www.huangxiutao.cn/2019/05/09/build-openfire-in-Mac.html">
 
 
 
@@ -137,7 +140,7 @@
   };
 </script>
 
-  <title>Docker网络学习 | ss0xt</title>
+  <title>Openfire搭建（Mac） | ss0xt</title>
   
 
 
@@ -317,7 +320,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huangxiutao.cn/2019/05/06/Docker-network.html">
+    <link itemprop="mainEntityOfPage" href="http://www.huangxiutao.cn/2019/05/09/build-openfire-in-Mac.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiutao Huang">
@@ -334,7 +337,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Docker网络学习
+          <h1 class="post-title" itemprop="name headline">Openfire搭建（Mac）
 
               
             
@@ -360,7 +363,7 @@
                 
               
 
-              <time title="Created: 2019-05-06 17:56:06" itemprop="dateCreated datePublished" datetime="2019-05-06T17:56:06+08:00">2019-05-06</time>
+              <time title="Created: 2019-05-09 20:33:05" itemprop="dateCreated datePublished" datetime="2019-05-09T20:33:05+08:00">2019-05-09</time>
             
 
             
@@ -377,7 +380,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-07 21:06:49" itemprop="dateModified" datetime="2019-05-07T21:06:49+08:00">2019-05-07</time>
+                <time title="Modified: 2019-05-10 16:35:54" itemprop="dateModified" datetime="2019-05-10T16:35:54+08:00">2019-05-10</time>
               
             
           </span>
@@ -412,44 +415,42 @@
 
       
         <blockquote>
-<p>之前对Docker只是停留在听过阶段，公司的项目中使用的是Docker部署，因此对Docker有了更深入的理解与运用，但是对于Docker网络这一块，还不是很熟，遇到了些问题（eg:默认设置中容器之间不能像在本机（宿主机）那样通过ip直接访问)，很有必要学习下这块的东西，将常用的命令以及使用记录下来，便于以后查看。</p>
+<p>最近开始接手公司一个即时通讯后端的的开发，项目大致的选型已经定了，使用Java这一套，Openfire作为后端即时通讯服务器。一直想着有机会接触IM，这次恰好能接触到这方面的知识，多多学习下，不过由于之前没有接触过，估计以后的坑也会不少，而且开发时间比较短，一个半月，捂脸.jpg。</p>
 </blockquote>
-<h2 id="前言">前言</h2>
-<p>Docker在Linux和Mac上的差异：图片来源：<a href="https://windard.com/blog/2018/05/01/Docker-For-Mac" target="_blank" rel="noopener">Docker for Mac 的网络问题</a></p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1g2sid4o1opj309c0bvaav.jpg" alt="/images/linux_docker_host"></p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1g2sie5kp2pj309c0bvt9g.jpg" alt="mac_docker_host"></p>
-<p>这个差异会导致在Mac上安装Docker后使用<code>ifconfig</code> 命令会看不到docker0这个网卡</p>
-<h2 id="docker-网络-驱动">Docker 网络“驱动”</h2>
-<p>docker 主要分为以下几种驱动（Driver）：</p>
-<ul>
-<li>bridge：Docker网络默认使用的驱动，</li>
-<li>host：使用宿主机网络，没有做容器与容器/容器与宿主机间的网络隔离，也就会发生网络竞争与冲突。Docker 17.06 以后的版本支持</li>
-<li>overlay：不是很了解，官方的文档：可以将多个Docker守护进程（Docker daemons）连接在一起，可以使集群服务之间相互通信，可以使用<code>overlay</code>实现集群服务与独立容器间的通信，以及两个不同的Docker进程间的独立容器的通信，此策略消除了在这些容器之间系统级别路由的需要</li>
-<li>none：对于此容器，禁用所有联网。通常与自定义网络驱动程序一起使用。none 模式不适用于集群服务。</li>
-</ul>
-<h2 id="docker-网络运用">Docker 网络运用</h2>
-<ul>
-<li>
-<p>创建网络</p>
-<p><code>docker network create backend_test</code></p>
-<p><code>docker network create frontend_test</code></p>
-</li>
-<li>
-<p>查看已有的网络</p>
-<p><code>docker network ls</code></p>
-</li>
-<li>
-<p>运行docker镜像配置网络</p>
-<p><code>docker run -itd --name docker_app_name --net backend_test hello-world</code></p>
-<p>…</p>
-</li>
-</ul>
+<h2 id="openfire-简介">Openfire 简介</h2>
+<p>官网链接：<a href="https://www.igniterealtime.org/projects/openfire/" target="_blank" rel="noopener">Openfire</a></p>
+<p><code>Openfire</code>是免费的、开源的、基于可拓展通讯和表示协议(<a href="%5Bhttps://xmpp.org%5D(https://xmpp.org/)">XMPP</a>)、采用<code>Java</code>开发的实时协作服务器，可用于<code>IM</code>服务器。支持Windows/Linux/Mac OS</p>
+<h2 id="搭建-openfire">搭建 Openfire</h2>
+<h3 id="下载安装">下载安装</h3>
+<p><a href="https://www.igniterealtime.org/downloads/index.jsp#openfire" target="_blank" rel="noopener">下载链接</a> 选择适合自己操作系统的版本下载，目前（2019年5月9日）最新的版本是4.3.2。</p>
+<p>下载好了后点击dmg 一步一步安装即可（如果出现安装不了记得在 设置》安全性与隐私 看一下，选择允许），需要注意的是1⃣电脑要配置好<code>Java</code>运行环境，2⃣<code>$JAVA_HOME</code> 要有值，否则<code>Openfire</code>启动不了，我一开始就遇到这个问题，<code>java -version</code>是没问题的，但是<code>echo $JAVA_HOME</code> 却没有值，解决办法：<a href="https://www.jianshu.com/p/27e494e45f78" target="_blank" rel="noopener">Mac配置JAVA_HOME</a> 。默认安装的路径在<code>/usr/local/openfire</code></p>
+<h3 id="配置数据库">配置数据库</h3>
+<p>这里使用MySQL，创建数据库：</p>
+<p><code>create database openfire default character set utf8 default collate utf8_general_ci;</code></p>
+<p>导入Openfire安装目录下的数据库文件：<code>/usr/local/openfire/resources/database/openfire_mysql.sql</code></p>
+<h3 id="启动并配置openfire">启动并配置Openfire</h3>
+<p>方式一：在设置面板中找到 Openfire 并打开，<code>Start Openfire</code>,</p>
+<p>方式二：进入<code>Openfire</code>的<code>bin</code>目录，执行启动脚本：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/openfire/bin</span><br><span class="line">./openfire.sh</span><br></pre></td></tr></table></figure>
+<p>推荐是第二种方式，因为在启动的时候会有详细的信息</p>
+<p>启动成功后打开localhost:9090，就能配置Openfire了:</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1g2vdkdszrkj32h00u0wug.jpg" alt="image"></p>
+<p>如果出现上图中的错误信息:<code>没有找到安装目录。定义openfire安装目录或新建或增加openfire_init.xml文件到类路径</code></p>
+<p>以及启动的时候出现无法创建log的相关错误信息：<code>Could not create directory /usr/local/openfire/logs</code></p>
+<p>解决办法：<br>
+为Openfire的安装目录（<code>/usr/local/openfire/bin</code>）添加读和写的权限，点击文件夹》显示简介，添加当前用户赋予读与写的权限（当然也可以用Linux权限的相关命令，这个我不熟。。🤦‍♂️）</p>
+<p>Tips: 查看当前用户：<code>whoami</code></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1g2w1qv4h69j30dz0gm0v0.jpg" alt="image-20190510111140668"></p>
+<p>解决完上面的问题，就能正常启动并访问配置页面了</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1g2w1uqarlyj30lu04amyy.jpg" alt="image-20190510111524204"></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1g2w1v21m02j31xp0u0k5o.jpg" alt="image-20190510111543496"></p>
+<p>然后后续按照下一步继续配置就可以了</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1g2wal6hb4tj31ge0pph3k.jpg" alt="image-20190510161719169"></p>
+<p>附：</p>
+<p><a href="https://www.igniterealtime.org/projects/spark/index.jsp" target="_blank" rel="noopener">Spark</a></p>
 <hr>
-<p>参考文档：</p>
-<p><a href="https://blog.51cto.com/ganbing/2087598" target="_blank" rel="noopener">“深入浅出”来解读Docker网络核心原理</a></p>
-<p><a href="https://www.ibm.com/developerworks/cn/linux/l-docker-network/index.html" target="_blank" rel="noopener">使用 Docker 容器网络</a></p>
-<p><a href="https://docs.docker.com/network/" target="_blank" rel="noopener">Networking overview</a></p>
-<p><a href="http://wudaijun.com/2017/11/docker-network/" target="_blank" rel="noopener">docker 网络</a></p>
+<p>参考文章：</p>
+<p><a href="https://www.jianshu.com/p/f51e007be982" target="_blank" rel="noopener">一步一步教你XMPP环境搭建</a></p>
 
       
     </div>
@@ -473,7 +474,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Docker/" rel="tag"># Docker</a>
+            <a href="/tags/IM/" rel="tag"># IM</a>
+          
+            <a href="/tags/Openfire/" rel="tag"># Openfire</a>
           
         </div>
       
@@ -486,8 +489,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/03/asynchronized-using-completablefuture.html" rel="next" title="异步编程—CompletableFuture简单使用">
-                <i class="fa fa-chevron-left"></i> 异步编程—CompletableFuture简单使用
+              <a href="/2019/05/06/Docker-network.html" rel="next" title="Docker网络学习">
+                <i class="fa fa-chevron-left"></i> Docker网络学习
               </a>
             
           </div>
@@ -495,10 +498,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/09/build-openfire-in-Mac.html" rel="prev" title="Openfire搭建（Mac）">
-                Openfire搭建（Mac） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -652,7 +651,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-网络-驱动"><span class="nav-number">2.</span> <span class="nav-text">Docker 网络“驱动”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-网络运用"><span class="nav-number">3.</span> <span class="nav-text">Docker 网络运用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#openfire-简介"><span class="nav-number">1.</span> <span class="nav-text">Openfire 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建-openfire"><span class="nav-number">2.</span> <span class="nav-text">搭建 Openfire</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载安装"><span class="nav-number">2.1.</span> <span class="nav-text">下载安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置数据库"><span class="nav-number">2.2.</span> <span class="nav-text">配置数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动并配置openfire"><span class="nav-number">2.3.</span> <span class="nav-text">启动并配置Openfire</span></a></li></ol></li></ol></div>
             
 
           </div>

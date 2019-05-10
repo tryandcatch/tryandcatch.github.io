@@ -106,28 +106,24 @@
 
 
 
-  <meta name="description" content="之前对Docker只是停留在听过阶段，公司的项目中使用的是Docker部署，因此对Docker有了更深入的理解与运用，但是对于Docker网络这一块，还不是很熟，遇到了些问题（eg:默认设置中容器之间不能像在本机（宿主机）那样通过ip直接访问)，很有必要学习下这块的东西，将常用的命令以及使用记录下来，便于以后查看。  前言 Docker在Linux和Mac上的差异：图片来源：Docker for">
-<meta name="keywords" content="Docker">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Docker网络学习">
-<meta property="og:url" content="http://www.huangxiutao.cn/2019/05/06/Docker-network.html">
+  <meta name="description" content="Record Life">
+<meta name="keywords" content="huangxiutao,ss0xt,hxt,blog,黄秀涛">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ss0xt">
+<meta property="og:url" content="http://www.huangxiutao.cn/page/2/index.html">
 <meta property="og:site_name" content="ss0xt">
-<meta property="og:description" content="之前对Docker只是停留在听过阶段，公司的项目中使用的是Docker部署，因此对Docker有了更深入的理解与运用，但是对于Docker网络这一块，还不是很熟，遇到了些问题（eg:默认设置中容器之间不能像在本机（宿主机）那样通过ip直接访问)，很有必要学习下这块的东西，将常用的命令以及使用记录下来，便于以后查看。  前言 Docker在Linux和Mac上的差异：图片来源：Docker for">
+<meta property="og:description" content="Record Life">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1g2sid4o1opj309c0bvaav.jpg">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1g2sie5kp2pj309c0bvt9g.jpg">
-<meta property="og:updated_time" content="2019-05-07T13:06:49.461Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker网络学习">
-<meta name="twitter:description" content="之前对Docker只是停留在听过阶段，公司的项目中使用的是Docker部署，因此对Docker有了更深入的理解与运用，但是对于Docker网络这一块，还不是很熟，遇到了些问题（eg:默认设置中容器之间不能像在本机（宿主机）那样通过ip直接访问)，很有必要学习下这块的东西，将常用的命令以及使用记录下来，便于以后查看。  前言 Docker在Linux和Mac上的差异：图片来源：Docker for">
-<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1g2sid4o1opj309c0bvaav.jpg">
+<meta name="twitter:title" content="ss0xt">
+<meta name="twitter:description" content="Record Life">
 
 
 
 
 
 
-  <link rel="canonical" href="http://www.huangxiutao.cn/2019/05/06/Docker-network.html">
+  <link rel="canonical" href="http://www.huangxiutao.cn/page/2/">
 
 
 
@@ -137,7 +133,7 @@
   };
 </script>
 
-  <title>Docker网络学习 | ss0xt</title>
+  <title>ss0xt</title>
   
 
 
@@ -196,7 +192,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -300,9 +297,9 @@
           
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -317,7 +314,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huangxiutao.cn/2019/05/06/Docker-network.html">
+    <link itemprop="mainEntityOfPage" href="http://www.huangxiutao.cn/2016/10/09/use-Kalendaejs.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiutao Huang">
@@ -334,8 +331,10 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Docker网络学习
-
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/10/09/use-Kalendaejs.html" class="post-title-link" itemprop="url">日期多选插件Kalendae.js</a>
               
             
           </h1>
@@ -360,7 +359,7 @@
                 
               
 
-              <time title="Created: 2019-05-06 17:56:06" itemprop="dateCreated datePublished" datetime="2019-05-06T17:56:06+08:00">2019-05-06</time>
+              <time title="Created: 2016-10-09 16:07:17" itemprop="dateCreated datePublished" datetime="2016-10-09T16:07:17+08:00">2016-10-09</time>
             
 
             
@@ -377,7 +376,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-07 21:06:49" itemprop="dateModified" datetime="2019-05-07T21:06:49+08:00">2019-05-07</time>
+                <time title="Modified: 2019-03-14 15:58:04" itemprop="dateModified" datetime="2019-03-14T15:58:04+08:00">2019-03-14</time>
               
             
           </span>
@@ -411,46 +410,28 @@
       
 
       
-        <blockquote>
-<p>之前对Docker只是停留在听过阶段，公司的项目中使用的是Docker部署，因此对Docker有了更深入的理解与运用，但是对于Docker网络这一块，还不是很熟，遇到了些问题（eg:默认设置中容器之间不能像在本机（宿主机）那样通过ip直接访问)，很有必要学习下这块的东西，将常用的命令以及使用记录下来，便于以后查看。</p>
-</blockquote>
-<h2 id="前言">前言</h2>
-<p>Docker在Linux和Mac上的差异：图片来源：<a href="https://windard.com/blog/2018/05/01/Docker-For-Mac" target="_blank" rel="noopener">Docker for Mac 的网络问题</a></p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1g2sid4o1opj309c0bvaav.jpg" alt="/images/linux_docker_host"></p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1g2sie5kp2pj309c0bvt9g.jpg" alt="mac_docker_host"></p>
-<p>这个差异会导致在Mac上安装Docker后使用<code>ifconfig</code> 命令会看不到docker0这个网卡</p>
-<h2 id="docker-网络-驱动">Docker 网络“驱动”</h2>
-<p>docker 主要分为以下几种驱动（Driver）：</p>
-<ul>
-<li>bridge：Docker网络默认使用的驱动，</li>
-<li>host：使用宿主机网络，没有做容器与容器/容器与宿主机间的网络隔离，也就会发生网络竞争与冲突。Docker 17.06 以后的版本支持</li>
-<li>overlay：不是很了解，官方的文档：可以将多个Docker守护进程（Docker daemons）连接在一起，可以使集群服务之间相互通信，可以使用<code>overlay</code>实现集群服务与独立容器间的通信，以及两个不同的Docker进程间的独立容器的通信，此策略消除了在这些容器之间系统级别路由的需要</li>
-<li>none：对于此容器，禁用所有联网。通常与自定义网络驱动程序一起使用。none 模式不适用于集群服务。</li>
-</ul>
-<h2 id="docker-网络运用">Docker 网络运用</h2>
-<ul>
-<li>
-<p>创建网络</p>
-<p><code>docker network create backend_test</code></p>
-<p><code>docker network create frontend_test</code></p>
-</li>
-<li>
-<p>查看已有的网络</p>
-<p><code>docker network ls</code></p>
-</li>
-<li>
-<p>运行docker镜像配置网络</p>
-<p><code>docker run -itd --name docker_app_name --net backend_test hello-world</code></p>
-<p>…</p>
-</li>
-</ul>
-<hr>
-<p>参考文档：</p>
-<p><a href="https://blog.51cto.com/ganbing/2087598" target="_blank" rel="noopener">“深入浅出”来解读Docker网络核心原理</a></p>
-<p><a href="https://www.ibm.com/developerworks/cn/linux/l-docker-network/index.html" target="_blank" rel="noopener">使用 Docker 容器网络</a></p>
-<p><a href="https://docs.docker.com/network/" target="_blank" rel="noopener">Networking overview</a></p>
-<p><a href="http://wudaijun.com/2017/11/docker-network/" target="_blank" rel="noopener">docker 网络</a></p>
+        
+          
+            <p>
+              
+在项目中要实现日期多选的功能，于是在网上找到Kalendae.js，此文主要记录本人对于Kalendae.js的一些用法，以便以后查阅，希望对读者也有所帮助
 
+Kalendae.js一句话介绍
+
+Kalendae.js是一款强大的日期多控件（插件），支持日期的单选、日期的多选、日期的范围选择
+案例
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2016/10/09/use-Kalendaejs.html#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
       
     </div>
 
@@ -471,40 +452,14 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Docker/" rel="tag"># Docker</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/04/03/asynchronized-using-completablefuture.html" rel="next" title="异步编程—CompletableFuture简单使用">
-                <i class="fa fa-chevron-left"></i> 异步编程—CompletableFuture简单使用
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/09/build-openfire-in-Mac.html" rel="prev" title="Openfire搭建（Mac）">
-                Openfire搭建（Mac） <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -514,15 +469,18 @@
   </article>
 
 
-  </div>
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
           
-
-  
-
-
 
         </div>
         
@@ -542,17 +500,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -641,23 +590,6 @@
         </div>
       </div>
 
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-网络-驱动"><span class="nav-number">2.</span> <span class="nav-text">Docker 网络“驱动”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-网络运用"><span class="nav-number">3.</span> <span class="nav-text">Docker 网络运用</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
       
 
       
@@ -791,10 +723,6 @@
 
 
   
-  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
-<script src="/js/src/post-details.js?v=7.0.1"></script>
-
-
 
   
 
@@ -810,8 +738,6 @@
 
   
 
-
-  
 
 
   
