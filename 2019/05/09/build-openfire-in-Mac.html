@@ -106,24 +106,24 @@
 
 
 
-  <meta name="description" content="最近开始接手公司一个即时通讯后端的的开发，项目大致的选型已经定了，使用Java这一套，Openfire作为后端即时通讯服务器。一直想着有机会接触IM，这次恰好能接触到这方面的知识，多多学习下，不过由于之前没有接触过，估计以后的坑也会不少，而且开发时间比较短，一个半月，捂脸.jpg。  Openfire 简介 官网链接：Openfire Openfire是免费的、开源的、基于可拓展通讯和表示协议(">
-<meta name="keywords" content="IM,Openfire">
+  <meta name="description" content="在Mac上搭建Openfire">
+<meta name="keywords" content="Openfire,IM,即时通讯">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Openfire搭建（Mac）">
+<meta property="og:title" content="Openfire开发(一)-Openfire搭建">
 <meta property="og:url" content="http://www.huangxiutao.cn/2019/05/09/build-openfire-in-Mac.html">
 <meta property="og:site_name" content="ss0xt">
-<meta property="og:description" content="最近开始接手公司一个即时通讯后端的的开发，项目大致的选型已经定了，使用Java这一套，Openfire作为后端即时通讯服务器。一直想着有机会接触IM，这次恰好能接触到这方面的知识，多多学习下，不过由于之前没有接触过，估计以后的坑也会不少，而且开发时间比较短，一个半月，捂脸.jpg。  Openfire 简介 官网链接：Openfire Openfire是免费的、开源的、基于可拓展通讯和表示协议(">
+<meta property="og:description" content="在Mac上搭建Openfire">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1g2vdkdszrkj32h00u0wug.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1g2w1qv4h69j30dz0gm0v0.jpg">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNc79gy1g2w1uqarlyj30lu04amyy.jpg">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1g2w1v21m02j31xp0u0k5o.jpg">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1g2wal6hb4tj31ge0pph3k.jpg">
-<meta property="og:updated_time" content="2019-05-10T08:35:54.442Z">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNc79gy1g2vdkdszrkj32h00u0wug.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNc79gy1g2w1qv4h69j30dz0gm0v0.jpg">
+<meta property="og:image" content="https://ww2.sinaimg.cn/large/006tNc79gy1g2w1uqarlyj30lu04amyy.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNc79gy1g2w1v21m02j31xp0u0k5o.jpg">
+<meta property="og:image" content="https://ww3.sinaimg.cn/large/006tNc79gy1g2wal6hb4tj31ge0pph3k.jpg">
+<meta property="og:updated_time" content="2019-06-01T06:23:11.830Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Openfire搭建（Mac）">
-<meta name="twitter:description" content="最近开始接手公司一个即时通讯后端的的开发，项目大致的选型已经定了，使用Java这一套，Openfire作为后端即时通讯服务器。一直想着有机会接触IM，这次恰好能接触到这方面的知识，多多学习下，不过由于之前没有接触过，估计以后的坑也会不少，而且开发时间比较短，一个半月，捂脸.jpg。  Openfire 简介 官网链接：Openfire Openfire是免费的、开源的、基于可拓展通讯和表示协议(">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1g2vdkdszrkj32h00u0wug.jpg">
+<meta name="twitter:title" content="Openfire开发(一)-Openfire搭建">
+<meta name="twitter:description" content="在Mac上搭建Openfire">
+<meta name="twitter:image" content="https://ww1.sinaimg.cn/large/006tNc79gy1g2vdkdszrkj32h00u0wug.jpg">
 
 
 
@@ -140,7 +140,7 @@
   };
 </script>
 
-  <title>Openfire搭建（Mac） | ss0xt</title>
+  <title>Openfire开发(一)-Openfire搭建 | ss0xt</title>
   
 
 
@@ -354,7 +354,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Openfire搭建（Mac）
+          <h1 class="post-title" itemprop="name headline">Openfire开发(一)-Openfire搭建
 
               
             
@@ -397,7 +397,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-10 16:35:54" itemprop="dateModified" datetime="2019-05-10T16:35:54+08:00">2019-05-10</time>
+                <time title="Modified: 2019-06-01 14:23:11" itemprop="dateModified" datetime="2019-06-01T14:23:11+08:00">2019-06-01</time>
               
             
           </span>
@@ -417,6 +417,8 @@
           
 
           
+            <div class="post-description">在Mac上搭建Openfire</div>
+          
 
         </div>
       </header>
@@ -432,7 +434,7 @@
 
       
         <blockquote>
-<p>最近开始接手公司一个即时通讯后端的的开发，项目大致的选型已经定了，使用Java这一套，Openfire作为后端即时通讯服务器。一直想着有机会接触IM，这次恰好能接触到这方面的知识，多多学习下，不过由于之前没有接触过，估计以后的坑也会不少，而且开发时间比较短，一个半月，捂脸.jpg。</p>
+<p>公司要把原有的聊天从使用FireBase那一套转为使用Openfire相关的，我负责后端的一些模块。由于是第一次接触IM相关的业务，在前期的技术调研的过程中花了比较多的时间，前期真是一脸懵逼，看了很多文章才明白了一些知识，而且很多文章都比较老旧了，都是使用Eclipse，在项目中引入jar包这种方式做的。因此打算写个基于IDEA和maven这一套来开发Openfire插件系列文章（希望能克服懒惰把这个系列写完 😆 ）</p>
 </blockquote>
 <h2 id="openfire-简介">Openfire 简介</h2>
 <p>官网链接：<a href="https://www.igniterealtime.org/projects/openfire/" target="_blank" rel="noopener">Openfire</a></p>
@@ -451,18 +453,19 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/openfire/bin</span><br><span class="line">./openfire.sh</span><br></pre></td></tr></table></figure>
 <p>推荐是第二种方式，因为在启动的时候会有详细的信息</p>
 <p>启动成功后打开localhost:9090，就能配置Openfire了:</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1g2vdkdszrkj32h00u0wug.jpg" alt="image"></p>
+<p><img src="https://ww1.sinaimg.cn/large/006tNc79gy1g2vdkdszrkj32h00u0wug.jpg" alt="image"></p>
 <p>如果出现上图中的错误信息:<code>没有找到安装目录。定义openfire安装目录或新建或增加openfire_init.xml文件到类路径</code></p>
 <p>以及启动的时候出现无法创建log的相关错误信息：<code>Could not create directory /usr/local/openfire/logs</code></p>
 <p>解决办法：<br>
 为Openfire的安装目录（<code>/usr/local/openfire/bin</code>）添加读和写的权限，点击文件夹》显示简介，添加当前用户赋予读与写的权限（当然也可以用Linux权限的相关命令，这个我不熟。。🤦‍♂️）</p>
 <p>Tips: 查看当前用户：<code>whoami</code></p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1g2w1qv4h69j30dz0gm0v0.jpg" alt="image-20190510111140668"></p>
+<p><img src="https://ww1.sinaimg.cn/large/006tNc79gy1g2w1qv4h69j30dz0gm0v0.jpg" alt="image-20190510111140668"></p>
 <p>解决完上面的问题，就能正常启动并访问配置页面了</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1g2w1uqarlyj30lu04amyy.jpg" alt="image-20190510111524204"></p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1g2w1v21m02j31xp0u0k5o.jpg" alt="image-20190510111543496"></p>
-<p>然后后续按照下一步继续配置就可以了</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1g2wal6hb4tj31ge0pph3k.jpg" alt="image-20190510161719169"></p>
+<p><img src="https://ww2.sinaimg.cn/large/006tNc79gy1g2w1uqarlyj30lu04amyy.jpg" alt="image-20190510111524204"></p>
+<p><img src="https://ww1.sinaimg.cn/large/006tNc79gy1g2w1v21m02j31xp0u0k5o.jpg" alt="image-20190510111543496"></p>
+<p>然后后续按照下一步继续配置就可以了。需要注意的是数据库配置，数据库连接URL配置成这样，配置utf-8否则数据库存储中文消息的时候会成???，而且&amp;符号必须被转义为<code>&amp;amp;</code>，<a href="https://djkin.iteye.com/blog/1900523" target="_blank" rel="noopener">参考文章</a></p>
+<p><code>jdbc:mysql://localhost:3306/openfire?rewriteBatchedStatements=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8</code></p>
+<p><img src="https://ww3.sinaimg.cn/large/006tNc79gy1g2wal6hb4tj31ge0pph3k.jpg" alt="image-20190510161719169"></p>
 <p>附：</p>
 <p><a href="https://www.igniterealtime.org/projects/spark/index.jsp" target="_blank" rel="noopener">Spark</a></p>
 <hr>
