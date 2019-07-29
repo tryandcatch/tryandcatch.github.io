@@ -106,18 +106,20 @@
 
 
 
-  <meta name="description" content="Feign填坑： 1.服务调用方404； 加上服务提供方的context-path 2.服务调用方：获取到是LinkedHashMap，强转会出问题 解决办法：使用泛型 SpringCloud实战之Feign笔记 SpringCloud 复杂对象接收时候对象变成LinkeHashMap">
+  <meta name="description" content="Feign填坑： 1.服务调用方404； 加上服务提供方的context-path 2.服务调用方：获取到是LinkedHashMap，强转会出问题 解决办法：使用泛型 [2019.07.29]更新： 3.java.lang.IllegalStateException: RequestParam.value() was empty on parameter 0 问题 接手同事的项目，启动项目遇到此">
 <meta name="keywords" content="Spring Cloud,problems">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Feign填坑">
 <meta property="og:url" content="http://www.huangxiutao.cn/2019/03/26/feign-using-problems.html">
 <meta property="og:site_name" content="ss0xt">
-<meta property="og:description" content="Feign填坑： 1.服务调用方404； 加上服务提供方的context-path 2.服务调用方：获取到是LinkedHashMap，强转会出问题 解决办法：使用泛型 SpringCloud实战之Feign笔记 SpringCloud 复杂对象接收时候对象变成LinkeHashMap">
+<meta property="og:description" content="Feign填坑： 1.服务调用方404； 加上服务提供方的context-path 2.服务调用方：获取到是LinkedHashMap，强转会出问题 解决办法：使用泛型 [2019.07.29]更新： 3.java.lang.IllegalStateException: RequestParam.value() was empty on parameter 0 问题 接手同事的项目，启动项目遇到此">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-04-09T01:52:24.711Z">
+<meta property="og:image" content="https://i.loli.net/2019/07/29/5d3e6b0b99a6112507.jpg">
+<meta property="og:updated_time" content="2019-07-29T03:47:21.756Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Feign填坑">
-<meta name="twitter:description" content="Feign填坑： 1.服务调用方404； 加上服务提供方的context-path 2.服务调用方：获取到是LinkedHashMap，强转会出问题 解决办法：使用泛型 SpringCloud实战之Feign笔记 SpringCloud 复杂对象接收时候对象变成LinkeHashMap">
+<meta name="twitter:description" content="Feign填坑： 1.服务调用方404； 加上服务提供方的context-path 2.服务调用方：获取到是LinkedHashMap，强转会出问题 解决办法：使用泛型 [2019.07.29]更新： 3.java.lang.IllegalStateException: RequestParam.value() was empty on parameter 0 问题 接手同事的项目，启动项目遇到此">
+<meta name="twitter:image" content="https://i.loli.net/2019/07/29/5d3e6b0b99a6112507.jpg">
 
 
 
@@ -391,7 +393,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-09 09:52:24" itemprop="dateModified" datetime="2019-04-09T09:52:24+08:00">2019-04-09</time>
+                <time title="Modified: 2019-07-29 11:47:21" itemprop="dateModified" datetime="2019-07-29T11:47:21+08:00">2019-07-29</time>
               
             
           </span>
@@ -430,6 +432,13 @@
 <p>加上服务提供方的context-path</p>
 <p>2.服务调用方：获取到是LinkedHashMap，强转会出问题</p>
 <p>解决办法：使用泛型</p>
+<p>[2019.07.29]更新：</p>
+<p>3.<code>java.lang.IllegalStateException: RequestParam.value() was empty on parameter 0</code> 问题</p>
+<p>接手同事的项目，启动项目遇到此错误：<img src="https://i.loli.net/2019/07/29/5d3e6b0b99a6112507.jpg" alt="Feign-error.jpg"></p>
+<p>解决办法：在每个调用的地方指定参数的value(name)的值。。。</p>
+<p>SOF Link：<a href="https://stackoverflow.com/questions/44313482/feign-client-with-spring-boot-requestparam-value-was-empty-on-parameter-0" target="_blank" rel="noopener">Feign Client with Spring Boot: RequestParam.value() was empty on parameter 0</a></p>
+<hr>
+<p>参考文章：</p>
 <p><a href="https://www.jianshu.com/p/5ce2182aa718" target="_blank" rel="noopener">SpringCloud实战之Feign笔记</a></p>
 <p><a href="https://blog.csdn.net/qq_20746277/article/details/80923207" target="_blank" rel="noopener">SpringCloud 复杂对象接收时候对象变成LinkeHashMap</a></p>
 
