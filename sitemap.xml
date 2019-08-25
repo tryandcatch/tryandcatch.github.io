@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.huangxiutao.cn/2019/08/24/install-elastic-search.html</loc>
+    
+    <lastmod>2019-08-25T14:43:38.826Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huangxiutao.cn/2019/04/03/asynchronized-using-completablefuture.html</loc>
+    
+    <lastmod>2019-08-25T14:40:13.409Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huangxiutao.cn/2019/05/06/Docker-network.html</loc>
+    
+    <lastmod>2019-08-25T14:39:17.242Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huangxiutao.cn/2019/05/09/build-openfire-in-Mac.html</loc>
+    
+    <lastmod>2019-08-25T14:37:05.555Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.huangxiutao.cn/2019/05/13/reduce-Docker-Image-size-in-Java.html</loc>
+    
+    <lastmod>2019-08-25T14:31:10.735Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.huangxiutao.cn/2019/08/06/create-free-edu-email.html</loc>
     
     <lastmod>2019-08-06T07:49:36.754Z</lastmod>
@@ -19,34 +54,6 @@
     <loc>http://www.huangxiutao.cn/2019/03/26/feign-using-problems.html</loc>
     
     <lastmod>2019-07-29T03:50:19.870Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huangxiutao.cn/2019/05/09/build-openfire-in-Mac.html</loc>
-    
-    <lastmod>2019-06-01T06:23:11.830Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huangxiutao.cn/2019/05/13/reduce-Docker-Image-size-in-Java.html</loc>
-    
-    <lastmod>2019-05-13T12:55:30.344Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huangxiutao.cn/2019/05/06/Docker-network.html</loc>
-    
-    <lastmod>2019-05-07T13:06:49.461Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.huangxiutao.cn/2019/04/03/asynchronized-using-completablefuture.html</loc>
-    
-    <lastmod>2019-04-09T01:43:33.011Z</lastmod>
     
   </url>
   
