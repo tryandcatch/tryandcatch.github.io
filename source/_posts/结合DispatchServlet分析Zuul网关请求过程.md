@@ -13,9 +13,9 @@ keywords:
 description:
  - 结合SpringMVC中的核心DispatchServlet来分析Zuul 1.x网关处理请求的过程。
 ---
-> 基于Zuul1.3.1RELEASE进行分析
+> 基于Zuul1.3.1RELEASE进行分析，代码：https://github.com/tryandcatch/zuul
 
-当一个请求到达`Zuul`的时候首先会进入到`DispatchServlet`的`doDispatch`方法:
+当一个请求到达`Zuul`的时候首先会经过一系列的 `Filter`（这里的`Filter`是`Servlet`下的）然后进入到`DispatchServlet`的`doDispatch`方法:
 ```java
 protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception {
     //...
@@ -44,7 +44,7 @@ protected HandlerExecutionChain getHandler(HttpServletRequest request) throws Ex
 `AbstractHandlerMapping`的`getHandler()`方法：
 ```java
 public final HandlerExecutionChain getHandler(HttpServletRequest request) throws Exception {
-    //这是个抽象的方法，该处会调用其子类AbstractUrlHandlerMapping、AbstractHandlerMethodMapping中的方法
+    //getHandlerInternal 是个抽象的方法，该处会调用其子类AbstractUrlHandlerMapping、AbstractHandlerMethodMapping中的方法
     Object handler = getHandlerInternal(request);
     if (handler == null) {
         handler = getDefaultHandler();
@@ -106,3 +106,7 @@ protected Object getHandlerInternal(HttpServletRequest request) throws Exception
     return handler;
 }
 ```
+
+`Zuul`中请求流程大致如下图：
+
+![ZuulRequestFlow.png](https://i.loli.net/2020/03/02/O8tPFwkV4vjGdCY.png)
