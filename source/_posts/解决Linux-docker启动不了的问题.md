@@ -20,11 +20,11 @@ description: 记录解决在Linux环境下启动Docker失败的处理办法
 这表明`docker`没有启动成功。
 
 ## 排查过程
-通过`journalctl -u docker.service` 查看`docker`的日志（这是一个需要注意的地方，）
+通过`journalctl -u docker.service` 查看`docker`的日志
 
 ![image-20200420213748031](http://img.huangxiutao.cn/image-20200420213748031.png)
 
-通过上面的日志可以看出，由于``chmod /var/lib/docker: read-only file system`  ,`/var/lib/docker` 为只读权限，每次都启动失败，启动失败太多次，`docker`就停止启动了（`start request repeated too quickly for docker.service`）于是执行（`root`用户）：`mount -o remount rw /`。
+通过上面的日志可以看出，由于`chmod /var/lib/docker: read-only file system`  ,`/var/lib/docker` 为只读权限，每次都启动失败，启动失败太多次，`docker`就停止启动了（`start request repeated too quickly for docker.service`）于是执行（`root`用户）：`mount -o remount rw /`。
 
 再次启动：`systemctl start docker.service`，嗯 再一次报错了。。。。。
 

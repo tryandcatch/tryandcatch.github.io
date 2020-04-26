@@ -7,7 +7,7 @@ title: ss0xt
 subtitle: 熟能生巧
 description: Record Life
 keywords: huangxiutao,ss0xt,hxt,blog,黄秀涛
-author: Xiutao Huang
+author: Huang Xiutao
 language: zh-CN
 timezone:
 
@@ -21,9 +21,9 @@ baidusitemap:
 url: http://www.huangxiutao.cn
 root: /
 # permalink: :year/:month/:day/:title.html
-permalink: :year/:month/:day/:urlname.html
+permalink: :urlname.html
 permalink_defaults:
-  urlname: index
+  urlname: :title
 
 # Directory
 source_dir: source

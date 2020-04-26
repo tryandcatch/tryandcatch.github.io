@@ -110,13 +110,13 @@ footer:
 creative_commons:
   license: by-nc-sa
   sidebar: false
-  post: false
+  post: true
   language:
 
 # Follow me on GitHub banner in right-top corner.
 github_banner:
-  enable: false
-  permalink: https://github.com/yourname
+  enable: true
+  permalink: https://github.com/tryandcatch
   title: Follow me on GitHub
 
 
@@ -130,11 +130,11 @@ github_banner:
 canonical: true
 
 # Change headers hierarchy on site-subtitle (will be main site description) and on all post / page titles for better SEO-optimization.
-seo: false
+seo: true
 
 # If true, will add site-subtitle to index page, added in main hexo config.
 # subtitle: Subtitle
-index_with_subtitle: false
+index_with_subtitle: true
 
 # Automatically add external URL with BASE64 encrypt & decrypt.
 exturl: false
@@ -152,10 +152,10 @@ exturl: false
 # External url should start with http:// or https://
 menu:
   home: / || home
-  #about: /about/ || user
   tags: /tags/ || tags
   #categories: /categories/ || th
   archives: /archives/ || archive
+  about: /about/ || user
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
@@ -163,7 +163,7 @@ menu:
 # Enable/Disable menu icons / item badges.
 menu_settings:
   icons: true
-  badges: false
+  badges: true
 
 
 # ---------------------------------------------------------------
@@ -217,8 +217,7 @@ links:
   Werner Vogels's Blog(Amazon CTO): https://www.allthingsdistributed.com/
   Netflix Blog: https://medium.com/netflix-techblog
   美团技术团队: https://tech.meituan.com/
-  V2EX: https://v2ex.com
-  Vince Liu: https://xiaogliu.github.io/
+  LZ Blog: http://lzblog.tech/
 
 # Sidebar Avatar
 avatar:
@@ -1014,7 +1013,7 @@ vendors:
   # Example:
   # fontawesome: //cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css
   # fontawesome: //cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css
-  fontawesome:
+  fontawesome: //cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css
 
   # Internal version: 2.10.4
   # See: https://www.algolia.com

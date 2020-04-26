@@ -2,7 +2,7 @@
 title: {{ title }}
 date: {{ date }}
 tags:
-urlname: 
+urlname: {{ title }}
 keywords:
 description:
 ---
