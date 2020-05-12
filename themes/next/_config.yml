@@ -1134,3 +1134,4 @@ images: images
 # config google adsense
 googleadsense:
   enable: true
+baidu_analytics: dc0f8078eb2f5eee76edafb8470c6e7d
